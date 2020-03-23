@@ -1,0 +1,62 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% load crispy_forms_tags%}
+
+{% block content %}
+<div django-app="TaskManager">        
+        <div class="container">
+                <div class="content">
+                <h1>Add new event!<small class="text-muted"> Schedule appointment</small></h1>
+                <form action="{%url 'index'%}" method="POST">
+                {% csrf_token %}
+                <div class="inputContainer">
+                        <label for="description">Description</label>
+                        <br>
+                        <input type="text" id="description" class="taskName form-control" placeholder="What do you need to do?" name="description" required>
+                    </div>
+                    <br>
+                    <div class="row">
+                    <div class="inputContainer half last col-6">
+                        <label for="category">Category</label>
+                        <br>
+                        <select id="category" class="taskCategory form-control" name="category_select">
+                        <option value="">Choose a category</option>
+                        {% for category in categories %}
+                            <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <div class="inputContainer half last right col-6">
+                        <label for="dueDate">Due Date</label>
+                        <br>
+                        <input type="date" id="dueDate" class="taskDate form-control" name="date">
+                    </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        <button class="taskAdd btn btn-success mx-2" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
+                        <button class="taskDelete btn btn-danger mx-2" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
+                    </div>
+                    <br>
+                <div>
+                {% for todo in todos %} <!-- django template lang - for loop -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-check abc-checkbox">
+                                <input type="checkbox" class="taskCheckbox form-check-input" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
+                                <label class="form-check-label" for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span> for <span class="category-{{ todo.category }}"> {{ todo.category }}</span></label>
+                            </div>
+                            <strong class="taskDate"><i class="fa fa-calendar"></i> {{ todo.created }} - {{ todo.due_date }}</strong>
+                        </div>
+                    </div>
+                {% endfor %}
+                </form>
+                </div>
+                </div><!-- content -->
+        </div><!-- container -->
+    </div>
+
+{% endblock %}

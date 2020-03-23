@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from todos.views import index
+from django.views.generic.base import TemplateView # new
 
 urlpatterns = [
-    path('', index, name="TodoList"),
+    # path('', index, name="TodoList"),
     path('admin/', admin.site.urls),
-    path('todos/', include('todos.urls')),
-]
+    path('', include('todos.urls')),
+    path('calendar/', include('events.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls'))
+] 

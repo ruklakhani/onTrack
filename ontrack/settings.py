@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todos',
+    'schedule',
+    'djangobower',
+    'events',
+    'crispy_forms',
+    # 'accounts.apps.AccountsConfig',
+    'accounts',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +65,7 @@ ROOT_URLCONF = 'ontrack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -73,9 +82,25 @@ TEMPLATES = [
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 # STATICFILES_STORAGE = '.django.GzipManifestStaticFilesStorage'
+STATICFILE_DIRS = [
+    os.path.join(PROJECT_ROOT, "static"),
+    os.path.join(BASE_DIR, "static")
+]
+# STATICFILES_FINDERS = ('djangobower.finders.BowerFinder')
+STATIC_URL = '/static/'
 
 WSGI_APPLICATION = 'ontrack.wsgi.application'
+BOWER_COMPONENTS_ROOT = '/PROJECT_ROOT/components/'
 
+
+BOWER_INSTALLED_APPS = [
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+]
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

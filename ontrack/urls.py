@@ -23,7 +23,7 @@ urlpatterns = [
     # path('', index, name="TodoList"),
     path('admin/', admin.site.urls),
     path('', include('todos.urls')),
-    path('calendar/', include('events.urls')),
+    # path('calendar/', include('events.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls'))
 ] 

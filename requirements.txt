@@ -60,7 +60,7 @@ python-dotenv==0.10.3
 python-engineio==3.10.0
 python-socketio==4.4.0
 pytz==2019.3
-PyYAML==5.1.2
+PyYAML==5.4
 redis==2.10.3
 requests==2.22.0
 six==1.12.0
